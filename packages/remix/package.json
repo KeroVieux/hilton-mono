@@ -1,0 +1,41 @@
+{
+  "type": "module",
+  "name": "remix",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "keroVieux <bigboss@hidoge.cn>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/remix.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmmirror.com/"
+  },
+  "scripts": {
+    "build": "npx remix build",
+    "serve": "npx remix-serve build/index.js",
+    "dev": "remix dev -c \"node server.mjs\"",
+    "test": "node ./__tests__/remix.test.js"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^2.1.0"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.8.6",
+    "@remix-run/express": "^2.1.0",
+    "@remix-run/node": "^2.1.0",
+    "@remix-run/react": "^2.1.0",
+    "@remix-run/serve": "^2.1.0",
+    "express": "^4.18.2",
+    "graphql": "^16.8.1",
+    "isbot": "^3.7.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

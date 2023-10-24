@@ -1,0 +1,101 @@
+{
+  "name": "loopback",
+  "version": "0.0.1",
+  "description": "test",
+  "keywords": [
+    "loopback-application",
+    "loopback"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "engines": {
+    "node": "16 || 18 || 20"
+  },
+  "scripts": {
+    "dev": "nodemon src/index.ts",
+    "build": "lb-tsc",
+    "build:watch": "lb-tsc --watch",
+    "lint": "npm run eslint && npm run prettier:check",
+    "lint:fix": "npm run eslint:fix && npm run prettier:fix",
+    "prettier:cli": "lb-prettier \"**/*.ts\" \"**/*.js\"",
+    "prettier:check": "npm run prettier:cli -- -l",
+    "prettier:fix": "npm run prettier:cli -- --write",
+    "eslint": "lb-eslint --report-unused-disable-directives .",
+    "eslint:fix": "npm run eslint -- --fix",
+    "pretest": "npm run rebuild",
+    "test": "lb-mocha --timeout 10000 --allow-console-logs \"dist/__tests__\"",
+    "posttest": "npm run lint",
+    "test:dev": "lb-mocha --allow-console-logs dist/__tests__/**/*.js && npm run posttest",
+    "docker:build": "docker build -t hilton-app .",
+    "docker:run": "docker run -p 3000:3000 -d hilton-app",
+    "premigrate": "npm run build",
+    "migrate": "node ./dist/migrate",
+    "preopenapi-spec": "npm run build",
+    "openapi-spec": "node ./dist/openapi-spec",
+    "prestart": "npm run rebuild",
+    "start": "node -r source-map-support/register .",
+    "start:graphql": "node graphql.mjs",
+    "clean": "lb-clean dist *.tsbuildinfo .eslintcache",
+    "rebuild": "npm run clean && npm run build"
+  },
+  "nodemonConfig": {
+    "verbose": true,
+    "watch": [
+      "src/"
+    ],
+    "ignore": [
+      "dist/*"
+    ],
+    "ext": "ts",
+    "exec": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "keroVieux <bigboss@hidoge.cn>",
+  "license": "",
+  "files": [
+    "README.md",
+    "lib",
+    "dist",
+    "src",
+    "!*/__tests__"
+  ],
+  "dependencies": {
+    "@loopback/boot": "^6.1.3",
+    "@loopback/core": "^5.1.3",
+    "@loopback/repository": "^6.1.3",
+    "@loopback/rest": "^13.1.3",
+    "@loopback/rest-explorer": "^6.1.3",
+    "@loopback/service-proxy": "^6.1.3",
+    "axios": "^1.5.1",
+    "bcryptjs": "^2.4.3",
+    "chai": "^4.3.10",
+    "dotenv": "^16.3.1",
+    "dredd": "^14.1.0",
+    "lodash": "^4.17.21",
+    "loopback-connector-mongodb": "^5.6.0",
+    "openapi-to-graphql-cli": "^2.6.3",
+    "shelljs": "^0.8.5",
+    "tslib": "^2.0.0"
+  },
+  "devDependencies": {
+    "@loopback/build": "^10.1.3",
+    "@loopback/eslint-config": "^14.0.4",
+    "@loopback/testlab": "^6.1.3",
+    "@types/chai": "^4.3.9",
+    "@types/node": "^16.18.50",
+    "eslint": "^8.48.0",
+    "nodemon": "^3.0.1",
+    "source-map-support": "^0.5.21",
+    "typescript": "~5.2.2"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmmirror.com/"
+  }
+}

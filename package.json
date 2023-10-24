@@ -1,0 +1,19 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "cucumber:test": "lerna run --scope cucumber test",
+    "loopback:dev": "lerna run --scope loopback dev",
+    "loopback:graphql": "lerna run --scope loopback start:graphql",
+    "remix:dev": "lerna run --scope remix dev",
+    "apollo:dev": "lerna run --scope apollo dev",
+    "vue:dev": "lerna run --scope vue dev"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "lerna": "^7.4.1"
+  }
+}
